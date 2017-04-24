@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ninecookies.services.bootstrap</groupId>
+	<artifactId>bootstrap-archetype</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>maven-archetype</packaging>
+
+	<name>bootstrap-archetype</name>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>3.0.0</version>
+			</extension>
+		</extensions>
+
+		<plugins>
+			<!-- transfer to github -->
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
+				<configuration>
+					<repositoryOwner>9cookies</repositoryOwner>
+					<repositoryName>mvn-repo</repositoryName>
+					<!-- credentials must be specified in .settings.xml -->
+					<server>github</server>
+					<branch>refs/heads/master</branch>
+					<message>Maven artifacts for ${project.artifactId}.${project.version}</message>
+					<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+					<merge>true</merge>
+					<includes>
+						<include>**/*</include>
+					</includes>
+				</configuration>
+				<executions>
+					<!-- run site-maven-plugin's 'site' target as part of the build's normal 
+						'deploy' phase -->
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<description>This is the archetype for the 9Cookies bootstrap project.</description>
+
+	<distributionManagement>
+		<repository>
+			<id>local-releases</id>
+			<name>Local Release Repository</name>
+			<url>file://${project.build.directory}/mvn-repo/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>local-snapshots</id>
+			<name>Local Snapshot Repository</name>
+			<url>file://${project.build.directory}/mvn-repo/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>
+
