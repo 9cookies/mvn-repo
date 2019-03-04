@@ -4,8 +4,8 @@
   <artifactId>json-body-transformer</artifactId>
   <versioning>
     <versions>
-      <version>0.0.5-SNAPSHOT</version>
+      <version>0.0.6-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20180319103225</lastUpdated>
+    <lastUpdated>20190304141826</lastUpdated>
   </versioning>
 </metadata>
