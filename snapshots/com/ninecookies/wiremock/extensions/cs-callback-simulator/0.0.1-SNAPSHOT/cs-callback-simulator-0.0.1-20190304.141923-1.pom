@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.ninecookies.wiremock.extensions</groupId>
+		<artifactId>wiremock-extensions</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>cs-callback-simulator</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Wiremock Courier-Service Callback Simulator</name>
+	<description>A Wiremock extension to emit callback notifications.</description>
+
+	<properties>
+		<wiremock.version>2.21.0</wiremock.version>
+		<jackson.version>2.9.8</jackson.version>
+
+		<testng.version>6.14.3</testng.version>
+		<restassured.version>2.9.0</restassured.version>
+		<slf4j.version>1.7.26</slf4j.version>
+	</properties>
+
+	<dependencies>
+		<!-- wiremock -->
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>${wiremock.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- used to support Java 8 time API types like Instant, LocalDate, etc. -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>		
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<artifactId>json-body-transformer</artifactId>
+			<groupId>com.ninecookies.wiremock.extensions</groupId>
+			<version>0.0.5</version>
+		</dependency>
+	</dependencies>
+</project>
