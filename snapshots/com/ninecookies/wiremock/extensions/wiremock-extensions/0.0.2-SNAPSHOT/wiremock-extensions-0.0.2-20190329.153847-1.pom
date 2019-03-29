@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ninecookies.wiremock.extensions</groupId>
+	<artifactId>wiremock-extensions</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Wiremock Extensions</name>
+	<description>Parent project of Wiremock extensions.</description>
+
+	<modules>
+		<module>json-body-transformer</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+
+		<java.version>1.8</java.version>
+	</properties>
+
+	<scm>
+		<connection>scm:git:ssh://github.com/9cookies/wiremock-extensions.git</connection>
+		<developerConnection>scm:git:ssh://github.com/9cookies/wiremock-extensions.git</developerConnection>
+		<url>https://github.com/9cookies/wiremock-extensions</url>
+	</scm>
+	
+	<distributionManagement>
+		<repository>
+			<id>local-releases</id>
+			<name>Local Release Repository</name>
+			<url>file://${project.build.directory}/mvn-repo/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>local-snapshots</id>
+			<name>Local Snapshot Repository</name>
+			<url>file://${project.build.directory}/mvn-repo/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+	            <groupId>com.github.github</groupId>
+	            <artifactId>site-maven-plugin</artifactId>
+	            <version>0.12</version>
+				<!-- this plug-in has issues with username / author / committer / whatever property/name is null might be
+				see https://github.com/github/maven-plugins/issues/85
+				final solution was to configure user name on github account profile.
+				-->
+	            <configuration>
+	            	<repositoryOwner>9cookies</repositoryOwner>
+	            	<repositoryName>mvn-repo</repositoryName>
+	            	<server>github</server>
+	            	<branch>refs/heads/master</branch>
+	            	<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+	            	<merge>true</merge>
+	                <message>Maven artifacts for ${project.artifactId}.${project.version}</message>
+	                <includes>
+	                	<include>**/*</include>
+	                </includes>
+	            </configuration>
+	            <executions>
+	              <execution>
+	                <goals>
+	                  <goal>site</goal>
+	                </goals>
+	                <phase>deploy</phase>
+	              </execution>
+	            </executions>
+	        </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.2.5,)</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>${java.version}</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
