@@ -4,8 +4,8 @@
   <artifactId>wiremock-extensions</artifactId>
   <versioning>
     <versions>
-      <version>0.0.7-SNAPSHOT</version>
+      <version>0.1.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20200327135652</lastUpdated>
+    <lastUpdated>20200409123858</lastUpdated>
   </versioning>
 </metadata>
